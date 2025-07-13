@@ -61,7 +61,8 @@ app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 
 // ✅ Start server
-const PORT = process.env.PORT || 5000;
+if(process.env.NODE_ENV !=="production"){
+  const PORT = process.env.PORT || 5000;
 
 const init = async () => {
   try {
@@ -74,5 +75,8 @@ const init = async () => {
     process.exit(1);
   }
 };
+}
+//Export server for Versel
+export default server;
 
 init();
